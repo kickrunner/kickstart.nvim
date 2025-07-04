@@ -16,3 +16,11 @@ vim.keymap.set('n', '<leader>rf', function()
   ht.repl.toggle(vim.api.nvim_buf_get_name(0))
 end, opts)
 vim.keymap.set('n', '<leader>rq', ht.repl.quit, opts)
+
+local wk = require 'which-key'
+wk.add {
+  { '<leader>r', group = 'REPLs ...' }, -- group
+  { '<leader>rr', desc = 'toggle REPL for current package' },
+  { '<leader>rf', desc = 'toggle REPL for current buffer' },
+  { '<leader>rq', desc = 'quit REPL' },
+}
