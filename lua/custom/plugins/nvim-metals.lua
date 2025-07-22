@@ -35,6 +35,7 @@ return {
           }
         end,
       },
+      'hrsh7th/cmp-nvim-lsp',
     },
     ft = { 'scala', 'sbt', 'java' },
     opts = function()
