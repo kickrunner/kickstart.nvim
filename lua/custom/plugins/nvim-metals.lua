@@ -120,11 +120,11 @@ return {
 
         map('n', '<leader>dr', function()
           require('dap').repl.toggle()
-        end)
+        end, 'DAP Toggle REPL')
 
         map('n', '<leader>dK', function()
           require('dap.ui.widgets').hover()
-        end)
+        end, 'DAP Hover')
 
         map('n', '<leader>dt', function()
           require('dap').toggle_breakpoint()
