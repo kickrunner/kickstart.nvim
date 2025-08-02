@@ -811,6 +811,7 @@ require('lazy').setup({
         opts = {},
       },
       'folke/lazydev.nvim',
+      'Kurama622/llm.nvim',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -856,9 +857,16 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'llm', 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          llm = {
+            name = 'llm',
+            module = 'llm.common.completion.frontends.blink',
+            timeout_ms = 10000,
+            score_offset = 100,
+            async = true,
+          },
         },
       },
 
