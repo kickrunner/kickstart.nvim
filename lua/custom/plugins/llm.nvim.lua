@@ -75,7 +75,7 @@ return {
             opts = {
               url = 'http://localhost:1234/v1/completions',
               model = 'local-model',
-              api_type = 'ollama',
+              api_type = 'openai',
 
               n_completions = 3,
               context_window = 512,
