@@ -3,7 +3,7 @@ return {
     'nvimtools/none-ls.nvim',
     config = function()
       local nls = require 'null-ls'
-      nls.setup { sources = { nls.builtins.formatting.google_java_format } }
+      nls.setup { sources = { nls.builtins.formatting.google_java_format, nls.builtins.formatting.prettier } }
     end,
   },
   {
@@ -16,6 +16,7 @@ return {
     opt = {
       ensure_installed = {
         'google-java-format',
+        'prettier',
       },
     },
   },
