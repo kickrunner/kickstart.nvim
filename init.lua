@@ -911,5 +911,8 @@ require('lazy').setup({
   },
 })
 
+-- Disable auto text wrapping when editing VCS messages
+require('custom.commit-messages-no-line-wrap')
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
