@@ -1,10 +1,7 @@
 -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fs.joinpath(vim.fs.normalize '~/.cache/jdtls/workspace/', project_name)
-local jdtls_dir = '/urs/share/jdtls' -- TODO find out actual path in Linux
-if vim.fn.has 'macunix' then
-  jdtls_dir = '/opt/homebrew/opt/jdtls'
-end
+local jdtls_dir = vim.fs.joinpath(os.getenv 'XDG_DATA_HOME', 'nvim/mason/packages/jdtls')
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -13,7 +10,7 @@ local config = {
   cmd = {
 
     -- 💀
-    vim.fs.normalize '~/.sdkman/candidates/java/21.0.8-tem/bin/java', -- or '/path/to/java21_or_newer/bin/java'
+    vim.fs.normalize '~/.sdkman/candidates/java/25.0.2-tem/bin/java', -- or '/path/to/java21_or_newer/bin/java'
     -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
@@ -34,14 +31,14 @@ local config = {
 
     -- 💀
     '-jar',
-    vim.fs.joinpath(jdtls_dir, 'libexec/plugins/org.eclipse.equinox.launcher_1.7.0.v20250519-0528.jar'),
+    vim.fs.joinpath(jdtls_dir, 'plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar'),
     -- ^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
 
     -- 💀
     '-configuration',
-    vim.fs.joinpath(jdtls_dir, 'libexec', 'config_' .. (vim.fn.has 'macunix' and 'mac' or 'linux')),
+    vim.fs.joinpath(jdtls_dir, 'config_' .. (vim.fn.has 'macunix' == 1 and 'mac' or 'linux')),
     -- ^^^^^^^^^^^^^^^^^^^        ^^^^^^
     -- Must point to the                      Change to one of `linux`, `win` or `mac`
     -- eclipse.jdt.ls installation            Depending on your system.
