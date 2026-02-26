@@ -616,11 +616,11 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'lua_ls', -- Lua Language server
         'stylua', -- Used to format Lua code
+        -- You can add other tools here that you want Mason to install
         'black',
         'isort',
         'jdtls',
         'clangd',
-        -- You can add other tools here that you want Mason to install
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -691,7 +691,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -914,7 +914,7 @@ require('lazy').setup({
 })
 
 -- Disable auto text wrapping when editing VCS messages
-require('custom.commit-messages-no-line-wrap')
+require 'custom.commit-messages-no-line-wrap'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
