@@ -804,7 +804,7 @@ do
     formatters_by_ft = {
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
+      python = { "ruff" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -908,6 +908,10 @@ do
 
   -- NOTE: You can also specify a branch or a specific commit
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
+
+  -- Add nvim-treesitter runtime queries to runtimepath
+  local ts_path = vim.fn.stdpath 'data' .. '/site/pack/core/opt/nvim-treesitter/runtime'
+  if vim.uv.fs_stat(ts_path) then vim.opt.runtimepath:append(ts_path) end
 
   -- Ensure basic parsers are installed
   local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
