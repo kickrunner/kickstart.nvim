@@ -1,3 +1,1 @@
-return {
-  'tpope/vim-obsession',
-}
+vim.pack.add { 'https://github.com/tpope/vim-obsession' }

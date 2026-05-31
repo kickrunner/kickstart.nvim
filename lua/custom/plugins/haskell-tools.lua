@@ -1,7 +1,1 @@
-return {
-  {
-    'mrcjkb/haskell-tools.nvim',
-    version = '^6', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
-}
+vim.pack.add { { src = 'https://github.com/mrcjkb/haskell-tools.nvim', version = vim.version.range '6.*' } }
