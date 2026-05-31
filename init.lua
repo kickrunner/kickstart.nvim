@@ -609,7 +609,8 @@ require('lazy').setup({
       ---@type table<string, vim.lsp.Config>
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
+        pylsp = {},
         pyright = {},
         ruff = {},
         rust_analyzer = {},
@@ -620,7 +621,6 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         angularls = {},
-        gopls = {},
         terraformls={},
 
         stylua = {}, -- Used to format Lua code
