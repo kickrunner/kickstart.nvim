@@ -1,1 +1,1 @@
-vim.pack.add { { src = 'https://github.com/mrcjkb/haskell-tools.nvim', version = vim.version.range '6.*' } }
+vim.pack.add { { src = 'https://github.com/mrcjkb/haskell-tools.nvim' } }
