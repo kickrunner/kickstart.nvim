@@ -211,6 +211,19 @@ do
 
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+  -- Yank the path of the current buffer to the clipboard
+  vim.keymap.set('n', '<leader>yp', function()
+    local path = vim.fn.expand '%:p' -- absolute path
+    vim.fn.setreg('+', path)
+    vim.notify('Copied path: ' .. path)
+  end, { desc = '[Y]ank [P]ath (absolute)' })
+
+  vim.keymap.set('n', '<leader>yr', function()
+    local path = vim.fn.expand '%' -- relative path
+    vim.fn.setreg('+', path)
+    vim.notify('Copied relative path: ' .. path)
+  end, { desc = '[Y]ank [R]elative path' })
+
 -- Diagnostics (Warnings) umschalten
 vim.keymap.set('n', '<leader>td', function()
   local config = vim.diagnostic.config()
@@ -379,6 +392,7 @@ do
     spec = {
       { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
       { '<leader>t', group = '[T]oggle' },
+      { '<leader>y', group = '[Y]ank' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
