@@ -224,13 +224,13 @@ do
     vim.notify('Copied relative path: ' .. path)
   end, { desc = '[Y]ank [R]elative path' })
 
--- Diagnostics (Warnings) umschalten
-vim.keymap.set('n', '<leader>td', function()
-  local config = vim.diagnostic.config()
-  vim.diagnostic.config {
-    virtual_text = not config.virtual_text,
-  }
-end, { desc = '[T]oggle [D]iagnostic Virtual Text' })
+  -- Diagnostics (Warnings) umschalten
+  vim.keymap.set('n', '<leader>td', function()
+    local config = vim.diagnostic.config()
+    vim.diagnostic.config {
+      virtual_text = not config.virtual_text,
+    }
+  end, { desc = '[T]oggle [D]iagnostic Virtual Text' })
 
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -577,9 +577,7 @@ do
   vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
   vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
   vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-  vim.keymap.set('n', '<leader>sF', function()
-    builtin.find_files { hidden = true, no_ignore = true }
-  end, { desc = '[S]earch [F]iles (hidden+ignored)' })
+  vim.keymap.set('n', '<leader>sF', function() builtin.find_files { hidden = true, no_ignore = true } end, { desc = '[S]earch [F]iles (hidden+ignored)' })
   vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
   vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
   vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -834,7 +832,7 @@ do
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     -- You can add other tools here that you want Mason to install
-    'jdtls'
+    'jdtls',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -874,7 +872,7 @@ do
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
-      python = { "ruff" },
+      python = { 'ruff' },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -980,7 +978,26 @@ do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+  local parsers = {
+    'bash',
+    'c',
+    'diff',
+    'html',
+    'javascript',
+    'jsdoc',
+    'json',
+    'json5',
+    'lua',
+    'luadoc',
+    'markdown',
+    'markdown_inline',
+    'query',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'yaml',
+  }
   require('nvim-treesitter').install(parsers)
 
   ---@param buf integer
@@ -997,7 +1014,7 @@ do
 
     -- Enable treesitter based folds
     -- For more info on folds see `:help folds`
-    vim.wo.foldenable=false
+    vim.wo.foldenable = false
     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     vim.wo.foldmethod = 'expr'
 
