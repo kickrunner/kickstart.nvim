@@ -788,6 +788,7 @@ do
         },
       },
     },
+    docker_language_server = {},
 
     stylua = {}, -- Used to format Lua code
 
