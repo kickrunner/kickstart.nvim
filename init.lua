@@ -981,6 +981,7 @@ do
   local parsers = {
     'bash',
     'c',
+    'css',
     'diff',
     'html',
     'javascript',
@@ -992,6 +993,7 @@ do
     'markdown',
     'markdown_inline',
     'query',
+    'scss',
     'tsx',
     'typescript',
     'vim',
