@@ -936,6 +936,7 @@ do
 
   -- [[ Autocomplete Engine ]]
   vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
+  vim.pack.add { gh 'mikavilpas/blink-ripgrep.nvim' }
   require('blink.cmp').setup {
     keymap = {
       -- 'default' (recommended) for mappings similar to built-in completions
@@ -978,7 +979,20 @@ do
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
+
+      providers = {
+        ripgrep = {
+          module = 'blink-ripgrep',
+          name = 'Ripgrep',
+          opts = {
+            prefix_min_len = 3,
+            backend = {
+              use = 'gitgrep-or-ripgrep',
+            },
+          },
+        },
+      },
     },
 
     snippets = { preset = 'luasnip' },
