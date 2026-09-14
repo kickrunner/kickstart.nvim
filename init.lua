@@ -685,6 +685,7 @@ do
   vim.pack.add { gh 'j-hui/fidget.nvim' }
   require('fidget').setup {}
 
+  vim.pack.add { gh 'b0o/schemastore.nvim' }
   --  This function gets run when an LSP attaches to a particular buffer.
   --    That is to say, every time a new file is opened that is associated with
   --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -773,6 +774,28 @@ do
     ts_ls = {},
     angularls = {},
     tofu_ls = {},
+    jsonls = {
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+          validate = { enable = true },
+        },
+      },
+    },
+    yamlls = {
+      settings = {
+        yaml = {
+          schemaStore = {
+            -- You must disable built-in schemaStore support if you want to use
+            -- this plugin and its advanced options like `ignore`.
+            enable = false,
+            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+            url = '',
+          },
+          schemas = require('schemastore').yaml.schemas(),
+        },
+      },
+    },
 
     stylua = {}, -- Used to format Lua code
 
