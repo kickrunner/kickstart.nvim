@@ -763,7 +763,6 @@ do
     rust_analyzer = {},
 
     ruff = {},
-    ts_ls = {},
     angularls = {},
     tofu_ls = {},
     jsonls = {
