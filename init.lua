@@ -762,7 +762,19 @@ do
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     rust_analyzer = {},
 
-    ruff = {},
+    ruff = {
+      -- Ruff is a linter/formatter LSP only. Let pyright own intellisense
+      -- (goto-definition, hover, references) so requests don't get routed to
+      -- ruff, which responds with "not supported by server".
+      on_attach = function(client)
+        client.server_capabilities.definitionProvider = false
+        client.server_capabilities.typeDefinitionProvider = false
+        client.server_capabilities.declarationProvider = false
+        client.server_capabilities.implementationProvider = false
+        client.server_capabilities.referencesProvider = false
+        client.server_capabilities.hoverProvider = false
+      end,
+    },
     angularls = {},
     tofu_ls = {},
     jsonls = {
