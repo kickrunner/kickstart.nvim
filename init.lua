@@ -427,6 +427,7 @@ do
       { '<leader>t', group = '[T]oggle' },
       { '<leader>y', group = '[Y]ank' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
+      { '<leader>r', group = 'T[r]eeSJ', mode = { 'n', 'v' } },
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
   }
