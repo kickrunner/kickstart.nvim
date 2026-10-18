@@ -755,7 +755,6 @@ do
     -- clangd = {},
     gopls = {},
     pyright = {},
-    tsc = {},
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
@@ -777,6 +776,7 @@ do
       end,
     },
     angularls = {},
+    tsc = {},
     tofu_ls = {},
     jsonls = {
       settings = {
